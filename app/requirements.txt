@@ -1,0 +1,5 @@
+pyjwt
+pyjwt[crypto]
+flask
+flask_sqlalchemy
+flask_bcrypt

@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+    {% if index %}
+        <div class="jumbotron col-lg-10 offset-lg-1">
+            <img src="/img/logo.png" class="img-fluid">
+            <hr class="my-4">
+            <p class="lead text-center">Welcome to chatterbox!</p>
+            <p class="lead text-center">To start chatting please <a href="/login" class="alert-link">login</a></p>
+        </div>
+    {% else %}
+        {% if msg %}
+        <div class="jumbotron col-lg-10 offset-lg-1">
+            <img src="/img/logo.png" class="img-fluid">
+            <hr class="my-4">
+            <p class="lead text-center">You don't have any messages yet.</p>
+            <p class="lead text-center">Select a <a href="/users" class="alert-link">user</a> to start messaging</p>
+        </div>
+        {% else %}
+        <div class="text-center mb-3">
+            <h1>Messages</h1>
+        </div>
+        {% endif %}
+        <div class="col-lg-6 offset-lg-3">
+            {% for message in messages %}
+            <div class="card">
+                <div class="card-header">
+                    <span class="badge badge-info">{{ message.time[:-3] }}</span>
+                </div>
+                <div class="card-body">
+                    <h4 class="card-title">{{ message.username }}</h4>
+                    <pre class="card-text text-wrap">{{ message.message }}</pre>
+                    <a href="/users/{{ message.user_id }}" class="btn btn-primary">Read</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
